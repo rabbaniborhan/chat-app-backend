@@ -15,7 +15,7 @@ connectDB();
 // Allowed origins
 const allowedOrigins = [
   "https://chat-web-chi.vercel.app",
-  "http://localhost:3000",
+  "http://localhost:5173",
 ];
 
 app.use(

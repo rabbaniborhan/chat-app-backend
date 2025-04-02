@@ -6,7 +6,7 @@ export const app = express();
 export const server = http.createServer(app);
 export const io = new Server(server, {
   cors: {
-    origin: ["https://chat-web-chi.vercel.app", "http://localhost:3000"],
+    origin: ["https://chat-web-chi.vercel.app", "http://localhost:5173"],
     credentials: true,
   },
 });
