@@ -7,13 +7,12 @@ import { app, server } from "./lib/socket.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 
-//configuration
-const PORT = process.env.PORT || 5000;
+// Configuration
 dotenv.config();
-connectDB();
+const PORT = process.env.PORT || 5000;
 connectDB();
 
-//use middlewares
+// Allowed origins
 const allowedOrigins = [
   "https://chat-web-chi.vercel.app",
   "http://localhost:3000",
@@ -35,11 +34,16 @@ app.use(
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
+
 app.use("/", (req, res) => {
   res.send("server is running");
 });
-server.listen(5000, () => {
-  console.log("server is running on port 5000");
+
+// Start server
+server.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
 });
