@@ -16,7 +16,7 @@ connectDB();
 //use middlewares
 app.use(
   cors({
-    origin: "https://chat-web-chi.vercel.app/",
+    origin: "https://chat-web-chi.vercel.app",
     credentials: true,
   })
 );
