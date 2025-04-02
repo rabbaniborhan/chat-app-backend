@@ -6,7 +6,7 @@ export const app = express();
 export const server = http.createServer(app);
 export const io = new Server(server, {
   cors: {
-    origin: ["https://chat-web-chi.vercel.app", "http://localhost:5173"],
+    origin: ["https://chat-web-chi.vercel.app"],
     credentials: true,
   },
 });
@@ -19,12 +19,7 @@ io.on("connection", (socket) => {
   const userId = socket.handshake.query.userId?.trim();
 
   if (userId) {
-    if (userSocketMap[userId]) {
-      const prevSocketId = userSocketMap[userId];
-      io.sockets.sockets.get(prevSocketId)?.disconnect();
-    }
-
-    userSocketMap[userId] = socket.id;
+    userSocketMap[userId] = socket?.id;
   }
 
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
